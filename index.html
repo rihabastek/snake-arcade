@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050907" />
+  <meta name="description" content="Snake Arcade — jeu du serpent néon, jouable au clavier et au tactile." />
+  <title>Snake Arcade</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23050a07'/><path d='M22 50h28V30h28v40H42' stroke='%233dffa0' stroke-width='12' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="src/config.js"></script>
+  <script defer src="src/core/direction.js"></script>
+  <script defer src="src/core/food.js"></script>
+  <script defer src="src/core/game.js"></script>
+  <script defer src="src/platform/storage.js"></script>
+  <script defer src="src/ui/renderer.js"></script>
+  <script defer src="src/ui/input.js"></script>
+  <script defer src="src/ui/hud.js"></script>
+  <script defer src="src/main.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">▚</span>
+        <div>
+          <h1>Snake <span>Arcade</span></h1>
+          <p class="brand-sub">Protocole néon</p>
+        </div>
+      </div>
+      <button id="pauseBtn" class="ghost-btn" type="button" aria-label="Mettre la partie en pause" disabled>Pause</button>
+    </header>
+
+    <section class="scoreboard" aria-label="Scores">
+      <div class="stat">
+        <span>Score</span>
+        <strong id="score" aria-live="polite">000</strong>
+      </div>
+      <div class="stat best">
+        <span>Record</span>
+        <strong id="best">000</strong>
+      </div>
+    </section>
+
+    <div class="board-wrap">
+      <canvas id="game" width="480" height="480" role="img"
+        aria-label="Terrain de jeu Snake, 20 cases sur 20, entouré de bords traversants"
+        aria-describedby="hint"></canvas>
+
+      <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="overlayTitle" hidden>
+        <div class="overlay-panel">
+          <p class="overlay-eyebrow" id="overlayEyebrow">Snake // Arcade</p>
+          <h2 id="overlayTitle">Prêt ?</h2>
+          <p id="overlayText">Mange les pommes, évite les blocs. Les bords te renvoient de l'autre côté.</p>
+          <button id="overlayBtn" class="btn-primary" type="button">Jouer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="touch-controls">
+      <div class="dpad" role="group" aria-label="Commandes tactiles">
+        <button class="dpad-btn up" type="button" data-dir="up" aria-label="Aller en haut">▲</button>
+        <button class="dpad-btn left" type="button" data-dir="left" aria-label="Aller à gauche">◀</button>
+        <button class="dpad-btn down" type="button" data-dir="down" aria-label="Aller en bas">▼</button>
+        <button class="dpad-btn right" type="button" data-dir="right" aria-label="Aller à droite">▶</button>
+      </div>
+      <p class="hints">Glisse sur le plateau ou utilise la croix</p>
+    </div>
+
+    <p id="hint" class="hints keyboard-hint">
+      <kbd>Flèches</kbd> / <kbd>ZQSD</kbd> / <kbd>WASD</kbd> pour tourner · <kbd>Espace</kbd> pour pause
+    </p>
+    <p id="status" class="sr-only" role="status" aria-live="polite"></p>
+  </main>
+
+  <noscript>
+    <p class="hints">Active JavaScript pour jouer à Snake Arcade.</p>
+  </noscript>
+</body>
+</html>
